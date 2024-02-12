@@ -161,21 +161,23 @@ class TutorialApplicationTests {
 
     @Test
     public void grabarPadreAHijosPorColeccion() {
-
+        //Aqui inicializo tutorial
         Tutorial tutorial = new Tutorial(0,"Título 1", new HashSet<>());
-
+        //Aqui inicializo comentario1
         Comentario comentario1 = new Comentario(0, "Texto1",tutorial);
+        //Añado al Set de Comentarios el nuevo comentario
         tutorial.getComentarios().add(comentario1);
         //NO PUEDO AÑADIR MÁS COMENTARIOS SIN SALVAR ANTES TUTORIAL
         //DADO QUE LA COLECCIÓN ES UN SET Y NO PUEDO TENER 2 COMENTARIOS
         // CON ID = 0 EN LA COLECCIÓN SET DE ARRANQUE, SI CAMBIO A
         //COLECCIÓN ARRAYLIST SÍ PODRÍA
-
+        //Guardo el tutorial con el primer comentario dentro del tutorial
         tutorialRepository.save(tutorial);
-
+        //Inicializo el segundo comentario
         Comentario comentario2 = new Comentario(0, "Texto2",tutorial);
+        //Lo añado al Set de comentarios el segundo comentario
         tutorial.getComentarios().add(comentario2);
-
+        //Y lo vuelvo a guardar
         tutorialRepository.save(tutorial);
 
     }
