@@ -30,7 +30,7 @@ public class Pelicula {
     @JsonFormat(pattern = "yyyy",  shape = JsonFormat.Shape.STRING)
     private Date anyoLanzamiento;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_idioma", nullable = false)
     private Idioma idioma;
 
@@ -52,7 +52,9 @@ public class Pelicula {
     @Column(name = "caracteristicas_especiales")
     private String caracteristicasEspeciales;
 
-    @ManyToMany
+
+
+    @ManyToMany()
     @JoinTable(
             name = "pelicula_categoria",
             joinColumns = @JoinColumn(name = "id_pelicula", referencedColumnName = "id_pelicula"),
@@ -73,7 +75,27 @@ public class Pelicula {
     @JsonFormat(pattern = "yyyy-MM-dd-HH:mm:ss",  shape = JsonFormat.Shape.STRING)
     private Date ultimaActualizacion;
 
+    public Pelicula(int idPelicula, String titulo, Set<Categoria> categorias) {
+        this.idPelicula = idPelicula;
+        this.titulo = titulo;
+        this.categorias = categorias;
+    }
+
+    public Pelicula(int idPelicula, String titulo, Set<Actor> actores, Set<Categoria> categorias) {
+        this.idPelicula = idPelicula;
+        this.titulo = titulo;
+        this.actores = actores;
+        this.categorias = categorias;
+    }
+    public Pelicula(int idPelicula, String titulo, Set<Actor> actores, Set<Categoria> categorias, Idioma idioma) {
+        this.idPelicula = idPelicula;
+        this.titulo = titulo;
+        this.actores = actores;
+        this.categorias = categorias;
+        this.idioma = idioma;
+    }
     public Long getId() {
         return this.idPelicula;
     }
+
 }

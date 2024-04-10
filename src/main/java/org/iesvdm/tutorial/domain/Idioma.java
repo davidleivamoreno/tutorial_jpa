@@ -27,9 +27,19 @@ public class Idioma {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "idioma", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idioma",cascade=CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnore
     //@JsonManagedReference
     private Set<Pelicula> peliculas = new HashSet<>();
+
+    public Idioma(int i, String idioma) {
+        this.id=i;
+        this.nombre=idioma;
+    }
+
+    public void addPelicula(Pelicula pelicula) {
+        peliculas.add(pelicula);
+        pelicula.setIdioma(this); // Establecer la asociación inversa
+    }
 
 }

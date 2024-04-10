@@ -25,7 +25,7 @@ public class Categoria {
     private String nombre;
 
     @ManyToMany(
-            mappedBy = "categorias")
+            mappedBy = "categorias",fetch = FetchType.EAGER)
     @JsonIgnore
     Set<Pelicula> peliculas = new HashSet<>();
 
@@ -33,4 +33,11 @@ public class Categoria {
     @JsonFormat(pattern = "yyyy-MM-dd-HH:mm:ss",  shape = JsonFormat.Shape.STRING)
     private Date ultimaActualizacion;
 
+    public Categoria(long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public <E> Categoria(int i, String categoria2, HashSet<E> es) {
+    }
 }

@@ -18,6 +18,7 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Actor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_actor")
@@ -33,5 +34,11 @@ public class Actor {
     @JsonFormat(pattern = "yyyy-MM-dd-HH:mm:ss",  shape = JsonFormat.Shape.STRING)
     private Date ultimaActualizacion;
 
+
+    public Actor(long id_actor, String nombre) {
+        this.id_actor = id_actor;
+        this.nombre = nombre;
+
+    }
 
 }
