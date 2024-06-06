@@ -22,7 +22,7 @@ public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_actor")
-    private long id_actor;
+    private Long id_actor= 0L;
     private String nombre;
 
     @ManyToMany(
